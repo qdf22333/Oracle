@@ -316,6 +316,8 @@ from employee
 where mod(eno, 2) = 0;  
 
 
+
+
 --3. 날짜 함수
  /*
     sysdate : 현재 시스템의 날짜와 시간을 출력
@@ -380,7 +382,19 @@ from dual;
 select hiredate, last_day(hiredate) as "월의 마지막 날짜"
 from employee;
 
+--문자열 ('2022-12-07') = > date 타입으로 변환
+select to_date ('2022-12-7', 'YYYY-MM-DD')
+from dual;
 
+
+select sysdate, to_char (sysdate, 'YYYY MON DD DY')
+from dual;
+
+
+
+--숫자를 => date 타입으로 변환
+select to_date (12072022, 'MMDDYYYY')
+from dual;
 
 --4. 변환 함수
 /* 형 변환 함수 <***매우중요***>
@@ -409,6 +423,14 @@ from employee;
 
 --현재 시스템의 오늘 날짜를 출력하되, 시간:분:초 요일까지 출력
 select sysdate, to_char(sysdate, 'YYYY-MM-DD HH:MI:SS DY')
+from dual;
+
+-- to_number : 문자형 데이터를 숫자형으로 변환
+
+select 10000 - 5000
+from dual;
+
+select '10000' - '5000'     --자동으로 변환됨 : 문자열 => 숫자형으로 
 from dual;
 
 /* to_char : 숫자를 char 형식으로 변환
