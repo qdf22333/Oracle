@@ -433,6 +433,12 @@ from dual;
 select '10000' - '5000'     --자동으로 변환됨 : 문자열 => 숫자형으로 
 from dual;
 
+select '10,000' - '5000'        -- to_number로 변환필요
+from dual;
+
+select to_number ('10,000' , '999,999') - to_number('5,000', '9,999') 숫자변환계산
+from dual;
+
 /* to_char : 숫자를 char 형식으로 변환
     0: 자리수를 나타내고 자리수가 맞지않으면 0으로 채움
     9: 자리수를 나타내고 자리수가 맞지않음녀 빈칸으로 채움

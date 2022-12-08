@@ -312,7 +312,22 @@ order by dno;
     ' < all' : 최소값 보다 작음
 */
 
-
+--직급이 SALESMAN이 아니면서, 직급이 SALESMAN인 사원보다 급여가 적은 사원을 모두 출력
+select eno 사원번호, ename 사원이름, job 직급, salary 급여
+from employee
+where salary < all (select salary from employee where job = 'SALESMAN')
+    and job <> 'SALESMAN';
+    
+    
+--담당 업무가 분석가(ANALYST)인 사원보다 급여가 적으면서 업무분석가가 아닌 사원들을 출력
+select eno, ename, job, salary
+from employee
+where salary < all (select salary from employee where job = 'ANALYST')
+    and job <> 'ANALYST';
+    
+select salary, job
+from employee
+where job = 'ANALYST';
 
 select eno, min(salary)
 

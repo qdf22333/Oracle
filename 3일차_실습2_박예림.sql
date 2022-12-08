@@ -71,7 +71,7 @@ select eno, ename, job, salary
 from employee
 where salary <all(select salary from employee 
                   where job = 'SALESMAN')
-    and job <> 'ANALYST';
+    and job <> 'SALESMAN';
             
             
 
