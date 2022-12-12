@@ -188,7 +188,7 @@ select * from member;
 commit;
 
 --테이블 삭제
-drop table member;
+drop table orders;
 
 
 

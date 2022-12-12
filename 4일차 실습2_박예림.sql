@@ -100,3 +100,5 @@ values ('3333', '1', 'aaa', '100', '1', 'y', default );
 select * from products;
 
 select * from orders;
+
+commit;

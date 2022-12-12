@@ -79,8 +79,14 @@ values (20, 'PUSAN', 'SALE');
 insert into dept
 values (30, 'abc', 'DEAGU');
 
+--암시적으로 null이 들어감 <== 컬럼을 선택하지 않을 때 
 insert into dept (dno, dname)
 values (30, 'abc');
+
+--명시적으로 null 넣기
+insert into dept
+values (40, 'bcd', null);
+
 
 commit;
 
@@ -96,7 +102,10 @@ create table member (
     
 
 /*
-제약조건 
+제약조건 : 데이터의 무결성을 확보하기 위해서 테이블의 컬럼에 부여
+            -무결성 : 오류없는 데이터, 원하는 데이터
+    -not null
+    -foreign key
     --Primary Key : 테이블에서 하나만 존재할 수 있다.
         --primary key가 적용된 컬럼은 중복된 값을 넣을 수 없다.
         --데이터를 수정할 때나, 삭제시 조건을 사용하는 컬럼
@@ -111,6 +120,14 @@ create table member (
     --NOT NULL : 컬럼에 NULL을 넣을 수 없다.
     
 */
+
+show user;
+select * from user_constraints;
+--현재 접속한 계정에서 생성된 객체의 모든 제약조건을 확인
+
+--원하는 테이블의 제약조건 확인
+select * from user_constraints
+where table_name = 'EMPLOYEE';
 
 desc member;
 
@@ -181,14 +198,19 @@ select * from employee;
 --복사된 테이블
 select * from emp;
 
+
 /*
 1. 값을 3 레코드 입력, 모든값 입력, null이 허용된 컬럼에 null 넣기.
 2. update 사용해서 데이터 수정, scott의 보너스 를 500으로 수정
     영업사원들의 보너스 300만원으로수정, 
     ward의 부서를 10번으로 수정
-3. delete : eno 778와 7698
+    allen의 manager를7839, 월급을 1800, 입사월 22/01/01ㄱ로 수정ㄴ
+3. delete : eno 7782와 7698의 레코드 삭제
 
 */
+
+
+--1. 
 
 
 

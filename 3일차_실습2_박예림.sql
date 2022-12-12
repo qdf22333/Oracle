@@ -3,8 +3,8 @@
 select dno 부서번호, sum(salary) "부서별 월급합계", round(avg(salary)) "부서별 월급 평균", 
     max(salary) "부서별 최대 월급", min(salary) "부서별 최소 월급"
 from employee
+where dno not in (10)
 group by dno
-having dno != 10
 order by dno;
 
 --2.  직책의 SALSMAN, PRESIDENT, CLERK 을 제외한 각 부서별 월급의 합계와 평균과 최대값, 최소값을 구하시오.   	
@@ -20,12 +20,13 @@ select * from employee;
 
 --3. SMITH 과 동일한 부서에 근무하는 사원들 의 월급의 합계와 평균과 최대값, 최소값을 구하시오. 
 select sum(salary) 월급합계, trunc(avg(salary)) 월급평균, 
-    max(salary) 최대값, min(salary) 최소값
+    max(salary) 최대값, min(salary) 최소값, dno, count(*)
 from employee
-where dno = (select dno from employee where ename = 'SMITH');
+where dno = (select dno from employee where ename = 'SMITH')
+group by dno;
 
 --4. 부서별 최소월급을 가져오되 최소월급이 1000 이상인 것만 출력하세요. 
-select min(salary) 최소월급, dno 부서
+select min(salary) 최소월급, dno 부서, count(*)
 from employee
 group by dno
 having min(salary) >= 1000
