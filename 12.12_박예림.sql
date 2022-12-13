@@ -2,7 +2,7 @@
 select e.ename 사원명, e.dno 부서번호, d.dname 부서이름
 from employee e, department d
 where e.dno = d.dno
-and e.ename = 'SCOTT';
+and ename = 'SCOTT';
 
 select * from employee;
 select * from department;
@@ -15,7 +15,7 @@ order by ename;
 
 --3. INNER JOIN을 사용하여 10번 부서에 속하는 
 --모든 담당 업무의 고유한 목록(한번씩만 표시)을 부서의 지역명을 포함하여 출력 하시오. 
-select e.eno 사원번호, loc 지역명, job 담당업무
+select e.dno 부서번호, loc 지역명, job 담당업무
 from employee e inner join department d
 on e.dno = d.dno and d.dno = 10;
 
@@ -43,9 +43,16 @@ on e.manager = m.eno
 order by e.ename;
 
 --8. OUTER JOIN, SELF JOIN을 사용하여 관리자가 없는 사원을 포함하여 사원번호를 기준으로 내림차순 정렬하여 출력 하시오. 
+    --EQUI JOIN 으로 처리
 select e.ename 사원명, e.eno 사원번호, m.ename 관리자
 from employee e, employee m
 where e.manager = m.eno (+)
+order by e.eno desc;
+
+    --ANSI 호환으로 출력
+select e.ename 사원명, e.eno 사원번호, m.ename 관리자
+from employee e left outer join employee m
+ON e.manager = m.eno
 order by e.eno desc;
 
 --9. SELF JOIN을 사용하여 지정한 사원의 이름(SCOTT), 부서번호, 지정한 사원과 동일한 부서에서 근무하는 사원을 출력하시오. 
